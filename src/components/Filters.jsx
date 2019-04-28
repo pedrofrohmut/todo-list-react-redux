@@ -1,6 +1,6 @@
 import React from "react"
 
-import { SHOW_ALL, SHOW_COMPLETED, SHOW_INCOMPLETE } from "../consts/myStrings"
+import { SHOW_ALL, SHOW_COMPLETED, SHOW_INCOMPLETE } from "../consts/strings"
 
 const Filters = (props) => {
   const { onFilterChange } = props

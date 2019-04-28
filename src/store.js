@@ -1,6 +1,6 @@
 import { createStore } from "redux"
 
-import { SHOW_ALL } from "./consts/myStrings"
+import { SHOW_ALL } from "./consts/strings"
 import { CHANGE_FILTER, ADD_TODO } from "./consts/actionTypes"
 
 const initialState = {

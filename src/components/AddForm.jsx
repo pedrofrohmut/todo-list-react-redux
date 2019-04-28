@@ -50,7 +50,6 @@ class AddForm extends Component {
     e.preventDefault()
     const action = this.createNewTodoAction(this.props.store, this.state.text)
     this.props.store.dispatch(action)
-    console.log(this.props.store.getState().todos)
   }
   
   handleInputChange(e) {
