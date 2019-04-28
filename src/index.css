@@ -25,3 +25,8 @@ a {
   text-decoration: none;
 }
 
+input[type="radio"] {
+  margin: 0px 15px 0 15px;
+  position: relative;
+  top: 2px;
+}

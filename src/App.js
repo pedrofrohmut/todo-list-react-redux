@@ -1,28 +1,49 @@
 import React from 'react'
 
 import Navbar from "./components/Navbar"
+import AddForm from "./components/AddForm"
+import FilterContainer from "./containers/FilterContainer"
 import TodosListContainer from "./containers/TodosListContainer"
+
+import { SHOW_ALL } from "./consts/myStrings"
+import { CHANGE_FILTER, ADD_TODO } from "./consts/actionTypes"
 
 import './App.css'
 
 //####################################################################
 import { createStore } from "redux"
 
-const SHOW_ALL = "SHOW_ALL"
-
 const initialState = {
   todos: [
-    { id: 1, text: "Hello World", isCompleted: false },
-    { id: 2, text: "Buy Some Milk", isCompleted: true },
-    { id: 3, text: "Fight The Ninjas", isCompleted: false },
-    { id: 4, text: "Get Lots of Money", isCompleted: false },
+    { id: 14, text: "Dummy the Villa", isCompleted: false },
+    { id: 4, text: "Get Lots of Money", isCompleted: true },
     { id: 5, text: "Conquer The World!", isCompleted: false },
+    { id: 2, text: "Buy Some Milk", isCompleted: true },
+    { id: 23, text: "Orc the way out", isCompleted: false },
+    { id: 1, text: "Hello World", isCompleted: false },
+    { id: 3, text: "Fight The Ninjas", isCompleted: false }
   ],
   todosFilter: SHOW_ALL
 }
 
 const appReducer = (prevState = initialState, action) => {
   switch (action.type) {
+    case CHANGE_FILTER:
+      const newFilter = {
+        todosFilter: action.todosFilter
+      }
+      return { 
+        ...prevState, 
+        ...newFilter 
+      }
+
+    case ADD_TODO:
+      const newTodo = action.todo
+      return {
+        ...prevState, 
+        todos: [ ...prevState.todos, newTodo ]
+      }
+
     default:
       return prevState
   }
@@ -37,26 +58,19 @@ const App = () => {
       <Navbar />
 
       <div className="container">
+
         
         {/* ADD FORM */}
+        <AddForm store={store} />
+
 
         {/* FILTER RADIOS + Container */}
+        <FilterContainer store={store} />
+       
 
         {/* TODO LIST + Container */}
-
         <TodosListContainer store={store} />
 
-        
-        {/* {store.getState().todos[0].text}
-        <br/>
-        {store.getState().todos[1].text}
-        <br/>
-        {store.getState().todos[2].text} */}
-
-        {/* <ul className="list-group text-white">
-          {store.getState().todos.map((todo, i) =>
-            <li key={i} class="list-group-item">{todo.text}</li>)}
-        </ul> */}
 
       </div>
     </div>
