@@ -1,7 +1,7 @@
 import { createStore } from "redux"
 
 import { SHOW_ALL } from "./consts/strings"
-import { CHANGE_FILTER, ADD_TODO } from "./consts/actionTypes"
+import { CHANGE_FILTER, ADD_TODO, TOGGLE_TODO_AS_COMPLETED } from "./consts/actionTypes"
 
 const initialState = {
   todos: [
@@ -32,6 +32,19 @@ const appReducer = (prevState = initialState, action) => {
       return {
         ...prevState, 
         todos: [ ...prevState.todos, newTodo ]
+      }
+
+    case TOGGLE_TODO_AS_COMPLETED:
+      const todos = [ ...prevState.todos ].map((todo) => {
+        if (todo.id === action.id) {
+          return { ...todo, isCompleted: !todo.isCompleted }
+        } else {
+          return todo
+        }
+      })
+      return {
+        ...prevState,
+        todos: todos
       }
 
     default:
